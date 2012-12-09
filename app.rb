@@ -17,7 +17,7 @@ end
 
 post '/submit' do
   id = Article.new_article(params[:title], params[:content])
-  JSON::generate Article.article_by(:id, id)
+  Article.article_by(:id, id).to_json
 end
 
 get '/article' do
@@ -36,6 +36,6 @@ end
 get '/api/article/:id' do
   article = Article.article_by(:id, params[:id])
   return 404 unless article
-  JSON::generate article
+  article.to_json
 end
 
