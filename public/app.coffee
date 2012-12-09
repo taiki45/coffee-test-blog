@@ -1,5 +1,13 @@
 square = (x) -> x * x
-console.log square 5
+fact = (x) ->
+  fact_iter = (x, y) ->
+    if x <= 1
+      x * y
+    else
+      fact_iter x - 1, x * y
+  fact_iter(x, 1)
+
+console.log fact 5
 
 Article =
   box: ->
