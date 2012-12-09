@@ -13,6 +13,10 @@ class Base
 end
 
 class Article < Base
+  def all
+    @db.all
+  end
+
   def article_by(key, value)
     case key
     when :id

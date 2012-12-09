@@ -20,6 +20,11 @@ post '/submit' do
   JSON::generate Article.article_by(:id, 5)
 end
 
+get '/article' do
+  @articles = Article.all
+  erb :all_article
+end
+
 get '/article/:id' do
   article = Article.article_by(:id, params[:id])
   return 404 unless article
