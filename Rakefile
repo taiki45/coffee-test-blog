@@ -10,3 +10,7 @@ task :compile do
     sh "coffee -c #{f}"
   end
 end
+
+desc "alias to :compile"
+task :c => :compile
+
