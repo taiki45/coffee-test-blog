@@ -1,2 +1,2 @@
-# Mizo nyun
-sample codes for javascript.
+# Osakana Test Blog
+sample codes for coffee script.
