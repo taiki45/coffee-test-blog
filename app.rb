@@ -12,12 +12,13 @@ get '/' do
 end
 
 get '/edit' do
+  @articles = Article.all.reverse
   erb :edit
 end
 
 post '/submit' do
   id = Article.new_article(params[:title], params[:content])
-  JSON::generate Article.article_by(:id, 5)
+  JSON::generate Article.article_by(:id, id)
 end
 
 get '/article' do

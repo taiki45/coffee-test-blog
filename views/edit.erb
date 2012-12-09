@@ -6,3 +6,13 @@
   <p><textarea name="content"></textarea></p>
   <p><input type="submit" />
 </form>
+
+<div id="article_box">
+  <% @articles.each do |article| %>
+    <div class="article">
+      <p>id: <%= article[:id] %></p>
+      <p>title: <%= article[:title] %></p>
+      <p>body: <%= article[:body] %></p>
+    </div>
+  <% end %>
+</div>
