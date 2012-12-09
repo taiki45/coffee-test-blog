@@ -2,7 +2,6 @@
 require 'sinatra'
 require 'sequel'
 require 'json'
-require 'singleton'
 
 $LOAD_PATH.unshift File.expand_path('../', __FILE__)
 require 'models'

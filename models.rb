@@ -1,33 +1,31 @@
 # -*- coding: utf-8 -*-
 
 class Base
-  include Singleton
-
-  def initialize
-    @db ||= Sequel.connect('sqlite://blog.db').from self.class.to_s
-  end
-
-  def self.method_missing(name, *args)
-    self.instance.__send__ name, *args
+  def self.init
+    @db ||= Sequel.connect('sqlite://blog.db').from self.name
   end
 end
 
 class Article < Base
-  def all
-    @db.all
-  end
+  self.init
+  class << self
 
-  def article_by(key, value)
-    case key
-    when :id
-      @db.filter(:id => value.to_i).first
-    else
-      nil
+    def all
+      @db.all
     end
-  end
 
-  def new_article(title, body)
-    @db.insert(:title => title, :body => body)
+    def article_by(key, value)
+      case key
+      when :id
+        @db.filter(:id => value.to_i).first
+      else
+        nil
+      end
+    end
+
+    def new_article(title, body)
+      @db.insert(:title => title, :body => body)
+    end
   end
 end
 
