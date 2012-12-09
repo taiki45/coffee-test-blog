@@ -7,9 +7,8 @@ class Base
 end
 
 class Article < Base
-  self.init
+  init
   class << self
-
     def all
       @db.all
     end
