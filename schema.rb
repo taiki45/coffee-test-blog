@@ -3,13 +3,11 @@ require 'sequel'
 
 DB = Sequel.connect 'sqlite://blog.db'
 
-DB.drop_table :article
-
-DB.create_table :article do
+DB.create_table? :article do
   primary_key :id
   String :title
   Blob :body
-  Date :created_at
-  Date :updated_at
+  DateTime :created_at, :default => Time.now
+  DateTime :updated_at, :default => Time.now
 end
 
