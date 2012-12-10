@@ -4,8 +4,10 @@ require 'sequel'
 require 'json'
 require 'pry'
 
-$LOAD_PATH.unshift File.expand_path('../', __FILE__)
-require 'models'
+
+DB = Sequel.connect 'sqlite://blog.db'
+class Article < Sequel::Model; end
+
 
 get '/' do
   erb :index
