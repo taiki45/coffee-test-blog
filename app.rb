@@ -2,6 +2,7 @@
 require 'sinatra'
 require 'sequel'
 require 'json'
+require 'pry'
 
 $LOAD_PATH.unshift File.expand_path('../', __FILE__)
 require 'models'
@@ -16,8 +17,8 @@ get '/edit' do
 end
 
 post '/submit' do
-  id = Article.new_article(params[:title], params[:content])
-  Article.article_by(:id, id).to_json
+  article = Article.create(:title=>params[:title], :body=>params[:content])
+  article.values.to_json
 end
 
 get '/article' do
@@ -26,7 +27,7 @@ get '/article' do
 end
 
 get '/article/:id' do
-  article = Article.article_by(:id, params[:id])
+  article = Article[params[:id]]
   return 404 unless article
   @title = article[:title]
   @content = article[:body]
@@ -34,8 +35,7 @@ get '/article/:id' do
 end
 
 get '/api/article/:id' do
-  article = Article.article_by(:id, params[:id])
-  return 404 unless article
-  article.to_json
+  article = Article[params[:id]]
+  article ? article.to_json : 404
 end
 
